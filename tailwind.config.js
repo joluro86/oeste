@@ -3,7 +3,10 @@ module.exports = {
   content: [
     './templates/**/*.html',
     './oeste/templates/**/*.html',
-    './oest/forms.py',
+    './publicador/templates/**/*.html',
+    './publicador/templates/*.html',
+    './oeste/forms.py',
+    './publicador/forms.py',
     // agrega otros archivos o directorios donde uses clases de Tailwind CSS
   ],
   theme: {
@@ -11,6 +14,8 @@ module.exports = {
   },
   plugins: [],
 }
+
+
 
 
 

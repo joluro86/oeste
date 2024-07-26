@@ -1,20 +1,33 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Publicador
 from .forms import PublicadorForm
 
+class PublicadorListView(ListView):
+    model = Publicador
+    template_name = 'publicador_list.html'
+    context_object_name = 'publicadores'
 
-def publicador_detail(request, pk):
-    publicador = get_object_or_404(Publicador, pk=pk)
-    return render(request, 'myapp/publicador_detail.html', {'publicador': publicador})
+class PublicadorDetailView(DetailView):
+    model = Publicador
+    template_name = 'publicador_detail.html'
+    context_object_name = 'publicador'
 
-def crear_publicador(request):
-    if request.method == 'POST':
-        form = PublicadorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('publicador_list')  # Redirige a una vista de lista de publicadores o la que prefieras
-    else:
-        form = PublicadorForm()
-    
-    return render(request, 'oeste/publicador_form.html', {'form': form})
+class PublicadorCreateView(CreateView):
+    model = Publicador
+    form_class = PublicadorForm
+    template_name = 'publicador_form.html'
+    success_url = reverse_lazy('publicador_list')
+
+class PublicadorUpdateView(UpdateView):
+    model = Publicador
+    form_class = PublicadorForm
+    template_name = 'publicador_form.html'
+    success_url = reverse_lazy('publicador_list')
+
+class PublicadorDeleteView(DeleteView):
+    model = Publicador
+    template_name = 'publicador_confirm_delete.html'
+    success_url = reverse_lazy('publicador_list')
+
 

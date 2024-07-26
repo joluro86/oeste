@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Publicadores{% endblock %}
+
+{% block content %}
+<h1>Lista de Publicadores</h1>
+<ul>
+    {% for publicador in publicadores %}
+        <li>
+            <a href="{% url 'publicador_detail' publicador.pk %}">{{ publicador.nombre }} {{ publicador.apellidos }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'publicador_create' %}">Agregar Nuevo Publicador</a>
+{% endblock %}

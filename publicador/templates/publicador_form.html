@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Publicador{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6">{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Publicador</h1>
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">Guardar</button>
+    </form>
+</div>
+{% endblock %}
+
